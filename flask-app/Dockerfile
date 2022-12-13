@@ -1,26 +1,25 @@
-###########################################
-# Dockerfile for a simple python 
-
-
-# Working from Python version 3.9
+# we are starting to build our docker container based on the 
+# python:3.9-alpine image.
 FROM python:3.9-alpine
 
-# setting the working directory inside the container to /code
-WORKDIR /code
+# make a folder inside the container named /usr/src/app
+#RUN mkdir /usr/src/app/
+
+# set the new folder we just created as the working directory
+WORKDIR /usr/src/app/
 
 RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev
 
-# copying the requirements.txt file from the host system to
-# inside the container
-COPY src/requirements.txt requirements.txt
+# copy everything from the current folder (the one where this 
+# Dockerfile lives) into the folder we created above. 
+COPY ./requirements.txt /usr/src/app/
 
-# install requirements inside the container using pip
-RUN pip install -r requirements.txt
-
-# expose port 4000 from the container
+# make port 4000 of the container available to the host machine
 EXPOSE 4000
 
-# tell the container to run the flask application
-# CMD ["python", "src/app.py"]
-CMD ["python", "app.py"]
+# use pip (the python package manager) to install in the container 
+# whatever packages are listed in the requirements.txt file 
+RUN pip install -r requirements.txt
 
+# execute the file app.py 
+CMD ["python", "app.py"]
