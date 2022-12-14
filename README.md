@@ -27,7 +27,7 @@ Our project is intended to represent a housing finder. Our three user personas a
 Our project currently involves get requests for price, roommate preferences, tenants, tenant and building relationships, buildings, and landlords. Post requests are used for students, buildings, and units. 
 
 ## Video walkthrough link
-
+https://drive.google.com/file/d/1-5jfjEEehmQ1HUegg9v8XY6IwGc3wOtl/view?usp=share_link
 
 
 
