@@ -57,39 +57,79 @@ insert into Roommate_Pref (pref_id, preference_type, smoking, pets) values (10, 
 insert into Roommate_Pref (pref_id, preference_type, smoking, pets) values (11, 'str', true, false);
 insert into Roommate_Pref (pref_id, preference_type, smoking, pets) values (12, 'str', true, true);
 
+CREATE TABLE Landlord (
+    landlord_id VARCHAR(9) PRIMARY KEY,
+    first_name VARCHAR(20),
+    last_name VARCHAR(20)
+);
+
+insert into Landlord (landlord_id, first_name, last_name) values (100507923, 'Dorella', 'Gauchier');
+insert into Landlord (landlord_id, first_name, last_name) values (242161157, 'Galven', 'Brown');
+insert into Landlord (landlord_id, first_name, last_name) values (140016497, 'Persis', 'Tamlett');
+insert into Landlord (landlord_id, first_name, last_name) values (375259901, 'Daven', 'Vyel');
+insert into Landlord (landlord_id, first_name, last_name) values (977204303, 'Merilee', 'Toulamain');
+insert into Landlord (landlord_id, first_name, last_name) values (770249814, 'Isobel', 'Suttie');
+insert into Landlord (landlord_id, first_name, last_name) values (853050726, 'Germain', 'Raeside');
+insert into Landlord (landlord_id, first_name, last_name) values (733042529, 'Shirlene', 'Martschke');
+insert into Landlord (landlord_id, first_name, last_name) values (884108775, 'Nance', 'Chaffer');
+insert into Landlord (landlord_id, first_name, last_name) values (324227547, 'Tonie', 'Ahmad');
+
 CREATE TABLE Building (
     building_id VARCHAR(9) PRIMARY KEY,
-    building_type_id VARCHAR(3),
+    building_type_id VARCHAR(5),
     building_address VARCHAR(30),
     building_name VARCHAR(20),
     minimum_age VARCHAR(2),
     monthly_rent VARCHAR(6),
     available_bedspaces VARCHAR(1),
     price_id VARCHAR(2),
-    CONSTRAINT fk_0 FOREIGN KEY (price_id)
-        REFERENCES Price_Code (price_id)
+    landlord_id VARCHAR(9),
+    CONSTRAINT fk_00 FOREIGN KEY (price_id)
+        REFERENCES Price_Code (price_id),
+    CONSTRAINT fk_0 FOREIGN KEY (landlord_id)
+        REFERENCES Landlord (landlord_id)
 );
 
 insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
-                  available_bedspaces, price_id) values (12889967, 158, '1 International Crossing', 'Steensland', 7, 1300, 7, 7);
+                  available_bedspaces, price_id, landlord_id) values (12889967, 'apt', '1 International Crossing', 'Strikeland', 17, 1300, 7, 7, 140016497);
 insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
-                  available_bedspaces, price_id) values (291537331, 1, '5 Elka Center', 'Troy', 7, 700, 4, 1);
+                  available_bedspaces, price_id, landlord_id) values (291537331, 'condo', '5 Elka Center', 'Troy', 17, 700, 4, 1, 140016497);
 insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
-                  available_bedspaces, price_id) values (540296785, 141, '389 Service Hill', 'Manufacturers', 10, 1900, 7, 13);
+                  available_bedspaces, price_id, landlord_id) values (540296785, 'house', '389 Service Hill', 'Manufacturers', 19, 1900, 7, 13, 140016497);
 insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
-                  available_bedspaces, price_id) values (590665407, 119, '320 Washington Lane', 'Chive', 0, 1400, 6, 8);
+                  available_bedspaces, price_id, landlord_id) values (590665407, 'condo', '320 Washington Lane', 'Chive', 17, 1400, 6, 8, 140016497);
 insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
-                  available_bedspaces, price_id) values (783009091, 611, '7 Barnett Place', 'Gina', 6, 1500, 5, 9);
+                  available_bedspaces, price_id, landlord_id) values (783009091, 'apt', '7 Barnett Place', 'Gina', 16, 1500, 5, 9, 140016497);
 insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
-                  available_bedspaces, price_id) values (887875152, 287, '6 Mallory Park', 'Dahle', 2, 2000, 7, 14);
+                  available_bedspaces, price_id, landlord_id) values (887875152, 'house', '6 Mallory Park', 'Dahle', 21, 2000, 7, 14, 375259901);
 insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
-                  available_bedspaces, price_id) values (598159342, 954, '1 Hollow Ridge Drive', 'Nova', 11, 3000, 4, 24);
+                  available_bedspaces, price_id, landlord_id) values (598159342, 'condo', '1 Hollow Ridge Drive', 'Nova', 18, 3000, 4, 24, 375259901);
 insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
-                  available_bedspaces, price_id) values (752921140, 823, '9070 Butterfield Crossing', 'Ronald Regan', 1, 1900, 4, 23);
+                  available_bedspaces, price_id, landlord_id) values (752921140, 'house', '9070 Butterfield Crossing', 'Ronald Regan', 17, 1900, 4, 23, 375259901);
 insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
-                  available_bedspaces, price_id) values (845369539, 138, '41926 Mcguire Junction', 'Waywood', 1, 1000, 5, 4);
+                  available_bedspaces, price_id, landlord_id) values (845369539, 'apt', '41926 Mcguire Junction', 'Waywood', 18, 1000, 5, 4, 375259901);
 insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
-                  available_bedspaces, price_id) values (75823558, 119, '6 Del Sol Plaza', 'Dexter', 13, 1200, 7, 6);
+                  available_bedspaces, price_id, landlord_id) values (75823558, 'house', '6 Del Sol Plaza', 'Dexter', 18, 1200, 7, 6, 375259901);
+insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
+                  available_bedspaces, price_id, landlord_id) values (34568645, 'apt', '1 Bucks Ave', 'State', 17, 900, 5, 3, 375259901);
+insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
+                  available_bedspaces, price_id, landlord_id) values (281537331, 'condo', '931 Wynnewood Ave', 'LaRoque', 18, 600, 3, 1, 977204303);
+insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
+                  available_bedspaces, price_id, landlord_id) values (541296785, 'house', '495 Tulane Ave', 'Cupertino', 19, 1900, 6, 13, 977204303);
+insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
+                  available_bedspaces, price_id, landlord_id) values (590765407, 'condo', '4953 Washington Lane', 'Randle', 18, 1290, 6, 8, 977204303);
+insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
+                  available_bedspaces, price_id, landlord_id) values (783029091, 'apt', '65 Frindle Place', 'Lackey', 19, 1500, 5, 9, 977204303);
+insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
+                  available_bedspaces, price_id, landlord_id) values (887675152, 'house', '6 Humphries Park', 'Dale', 18, 2100, 6, 15, 977204303);
+insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
+                  available_bedspaces, price_id, landlord_id) values (598149342, 'condo', '23 Ridge Drive', 'Villanova', 19, 3000, 6, 24, 977204303);
+insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
+                  available_bedspaces, price_id, landlord_id) values (752221140, 'house', '9070 Roxbury Crossing', 'Gorges', 17, 1900, 4, 23, 977204303);
+insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
+                  available_bedspaces, price_id, landlord_id) values (845969539, 'apt', '41926 Mcguire Junction', 'Waywood', 18, 1000, 5, 4, 884108775);
+insert into Building (building_id, building_type_id, building_address, building_name, minimum_age, monthly_rent,
+                  available_bedspaces, price_id, landlord_id) values (55823558, 'house', '6 Del Sol Plaza', 'Dexter', 18, 1200, 7, 6, 884108775);
 
 CREATE TABLE Unit (
     unit_id VARCHAR(9) PRIMARY KEY,
@@ -119,36 +159,33 @@ CREATE TABLE Student (
     year_in_school VARCHAR(1),
     age VARCHAR(2) CHECK (age > 16 AND age < 30),
     price_id VARCHAR(2),
-    building_id VARCHAR(9),
     pref_id VARCHAR(2),
     CONSTRAINT fk_2 FOREIGN KEY (price_id)
         REFERENCES Price_Code (price_id),
-    CONSTRAINT fk_3 FOREIGN KEY (building_id)
-        REFERENCES Building (building_id),
     CONSTRAINT fk_4 FOREIGN KEY (pref_id)
         REFERENCES Roommate_Pref (pref_id)
 );
 
-insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, building_id, pref_id)
-values (429940719, 'Laurie', 'Charon', 2, 20, 1, 12889967, 1);
-insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, building_id, pref_id)
-values (476478220, 'Hollis', 'Juleff', 4, 22, 1, 12889967, 2);
-insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, building_id, pref_id)
-values (140460899, 'Jordan', 'Kohrt', 6, 18, 1, 12889967, 3);
-insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, building_id, pref_id)
-values (762372208, 'Lynna', 'Roskam', 3, 22, 3, 590665407, 4);
-insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, building_id, pref_id)
-values (519109740, 'Addy', 'Barthelet', 5, 25, 3, 590665407, 5);
-insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, building_id, pref_id)
-values (166175503, 'Joseito', 'Cottu', 5, 23, 3, 590665407, 6);
-insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, building_id, pref_id)
-values (766248167, 'Bartolomeo', 'Garci', 5, 17, 3, 752921140, 7);
-insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, building_id, pref_id)
-values (580748529, 'Jock', 'Stanners', 6, 18, 10, 752921140, 8);
-insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, building_id, pref_id)
-values (868581856, 'Stesha', 'Ordish', 2, 24, 12, 752921140, 9);
-insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, building_id, pref_id)
-values (213085665, 'Alie', 'Stener', 5, 25, 11, 752921140, 10);
+insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, pref_id)
+values (429940719, 'Laurie', 'Charon', 2, 20, 1, 1);
+insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, pref_id)
+values (476478220, 'Hollis', 'Juleff', 4, 22, 1, 2);
+insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, pref_id)
+values (140460899, 'Jordan', 'Kohrt', 6, 18, 1, 3);
+insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, pref_id)
+values (762372208, 'Lynna', 'Roskam', 3, 22, 3, 4);
+insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, pref_id)
+values (519109740, 'Addy', 'Barthelet', 5, 25, 3, 5);
+insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, pref_id)
+values (166175503, 'Joseito', 'Cottu', 5, 23, 3, 6);
+insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, pref_id)
+values (766248167, 'Bartolomeo', 'Garci', 5, 17, 3, 7);
+insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, pref_id)
+values (580748529, 'Jock', 'Stanners', 6, 18, 10, 8);
+insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, pref_id)
+values (868581856, 'Stesha', 'Ordish', 2, 24, 12, 9);
+insert into Student (stu_id, first_name, last_name, year_in_school, age, price_id, pref_id)
+values (213085665, 'Alie', 'Stener', 5, 25, 11, 10);
 
 CREATE TABLE Tenant (
     tenant_id VARCHAR(9) PRIMARY KEY,
@@ -183,26 +220,6 @@ insert into Tenant (tenant_id, first_name, last_name, age, pref_id, building_id)
 values (115218578, 'Arni', 'Perello', 16, 9, 590665407);
 insert into Tenant (tenant_id, first_name, last_name, age, pref_id, building_id)
 values (652610350, 'Tamara', 'Kissack', 25, 10, 590665407);
-
-CREATE TABLE Landlord (
-    landlord_id VARCHAR(9) PRIMARY KEY,
-    first_name VARCHAR(20),
-    last_name VARCHAR(20),
-    building_id VARCHAR(9),
-    CONSTRAINT fk_7 FOREIGN KEY (building_id)
-        REFERENCES Building (building_id)
-);
-
-insert into Landlord (landlord_id, first_name, last_name, building_id) values (10050792, 'Dorella', 'Gauchier', 291537331);
-insert into Landlord (landlord_id, first_name, last_name, building_id) values (242161157, 'Galven', 'Brown', 291537331);
-insert into Landlord (landlord_id, first_name, last_name, building_id) values (140016497, 'Persis', 'Tamlett', 291537331);
-insert into Landlord (landlord_id, first_name, last_name, building_id) values (375259901, 'Daven', 'Vyel', 291537331);
-insert into Landlord (landlord_id, first_name, last_name, building_id) values (977204303, 'Merilee', 'Toulamain', 845369539);
-insert into Landlord (landlord_id, first_name, last_name, building_id) values (770249814, 'Isobel', 'Suttie', 845369539);
-insert into Landlord (landlord_id, first_name, last_name, building_id) values (853050726, 'Germain', 'Raeside', 590665407);
-insert into Landlord (landlord_id, first_name, last_name, building_id) values (733042529, 'Shirlene', 'Martschke', 590665407);
-insert into Landlord (landlord_id, first_name, last_name, building_id) values (884108775, 'Nance', 'Chaffer', 783009091);
-insert into Landlord (landlord_id, first_name, last_name, building_id) values (324227547, 'Tonie', 'Ahmad', 783009091);
 
 CREATE TABLE Building_Tenant (
     tenant_id VARCHAR(9),
